@@ -102,11 +102,11 @@ func resourceAwsEc2ClientVpnRouteRead(d *schema.ResourceData, meta interface{}) 
 		ClientVpnEndpointId: aws.String(d.Get("client_vpn_endpoint_id").(string)),
 		Filters: []*ec2.Filter{
 			{
-				Name:   aws.String("destinationCidr"),
+				Name:   aws.String("destination-cidr"),
 				Values: []*string{aws.String(d.Get("cidr_block").(string))},
 			},
 			{
-				Name:   aws.String("targetSubnet"),
+				Name:   aws.String("target-subnet"),
 				Values: []*string{assoc.TargetNetworkId},
 			},
 		},
@@ -170,11 +170,11 @@ func clientVpnRouteRefreshFunc(conn *ec2.EC2, subnetId string, cidrBlock string,
 			ClientVpnEndpointId: aws.String(cvepID),
 			Filters: []*ec2.Filter{
 				{
-					Name:   aws.String("destinationCidr"),
+					Name:   aws.String("destination-cidr"),
 					Values: []*string{aws.String(cidrBlock)},
 				},
 				{
-					Name:   aws.String("targetSubnet"),
+					Name:   aws.String("target-subnet"),
 					Values: []*string{aws.String(subnetId)},
 				},
 			},
